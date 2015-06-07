@@ -19,11 +19,13 @@
       - cardOpen
       - phoneOpen
 
-
 - Logs
   - Logs list + fuzzy search
   - Export list
   - Clear logss
+
+
+
 
 - Open Door Method
   - GPIO: Open door for x seoncds

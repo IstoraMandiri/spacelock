@@ -1,4 +1,32 @@
 <template name="logs">
-  <h3>Event Logs</h3>
-  <div class="divider"></div>
+  <h3>Event Log Viewer</h3>
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="searchLogs" type="text">
+      <label for="searchLogs" class="">Search Logs</label>
+    </div>
+  </div>
+  <div class="row">
+    <table>
+      <thead>
+        <tr>
+          <th data-fiel="time">Time</th>
+          <th>Event</th>
+          <th colspan="100">Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each logs}}
+          <tr>
+            <td>{{createdAt}}</td>
+            <td>{{type}}</td>
+            {{#if data.user}}
+              <td>{{data.method}}</td>
+              <td><a href="#">{{data.user.name}}</a></td>
+            {{/if}}
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 </template>

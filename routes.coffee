@@ -8,7 +8,7 @@
     name: 'home'
     path: '/'
   ,
-    title: 'Event Logs'
+    title: 'Logs'
     name: 'logs'
     path: '/logs'
   ,

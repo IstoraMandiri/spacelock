@@ -8,9 +8,11 @@ meteor-platform
 autopublish
 insecure
 coffeescript
+less
 accounts-password
 showdown
 materialize:materialize
 useraccounts:materialize
 raix:handlebar-helpers
 msavin:mongol
+alanning:roles
