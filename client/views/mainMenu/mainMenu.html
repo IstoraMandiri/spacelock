@@ -9,9 +9,8 @@
 </template>
 
 <template name="mainMenuItems">
-  <li><a href="{{pathFor 'home'}}">Home</a></li>
-  <li><a href="{{pathFor 'logs'}}">Logs</a></li>
-  <li><a href="{{pathFor 'users'}}">Users</a></li>
-  <li><a href="{{pathFor 'settings'}}">Settings</a></li>
+  {{#each menuItems}}
+    <li class='{{#if active}}active{{/if}}'><a href="{{pathFor name}}">{{title}}</a></li>
+  {{/each}}
   <li><a href="#" class='logout'>Logout</a></li>
 </template>

@@ -1,7 +1,8 @@
-@Spacelock =
-  cols:
+@SpaceLock = @SpaceLock || {}
+
+SpaceLock.cols =
     Events: new Mongo.Collection 'Logs'
     Cards: new Mongo.Collection 'Cards'
-    Config: new Mongo.Collection 'Settings'
+    Settings: new Mongo.Collection 'Settings'
 
 # pub/sub

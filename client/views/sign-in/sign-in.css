@@ -1,0 +1,8 @@
+.wrapper.route-sign-in{
+  background:#ddd;
+}
+
+.wrapper.route-sign-in .brand-logo{
+  width:100%;
+  text-align: center;
+}

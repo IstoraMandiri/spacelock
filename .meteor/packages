@@ -9,6 +9,8 @@ autopublish
 insecure
 coffeescript
 accounts-password
+showdown
 materialize:materialize
 useraccounts:materialize
 raix:handlebar-helpers
+msavin:mongol

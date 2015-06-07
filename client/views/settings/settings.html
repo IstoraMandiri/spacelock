@@ -1,7 +1,29 @@
 <template name='settings'>
-  <h3>Settings</h3>
-  <div class="divider"></div>
+  <h3>System Settings</h3>
   <div class="section">
-
+    {{> settingsSubmenu}}
   </div>
+  <div class="section">
+    {{> yield 'subsection'}}
+  </div>
+</template>
+
+<template name='settingsSubmenu'>
+  {{#each settingsOptions}}
+    <a class="btn waves-effect {{#unless active}}grey{{/unless}}" href="{{pathFor fullname}}">
+      {{title}}
+    </a>
+  {{/each}}
+</template>
+
+<template name='settingsContent'>
+  <p>Edit content here</p>
+</template>
+
+<template name='settingsTwitter'>
+  <p>Edit twitter settings here</p>
+</template>
+
+<template name='settingsDoor'>
+  <p>Edit door settings here</p>
 </template>

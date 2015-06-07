@@ -1,5 +1,15 @@
 <template name="signIn">
+
   <div class="row section">
+
+  {{#if appContent.signIn}}
+    <div class="col s12 l8 offset-l2">
+      <div class="section flow-text">
+        {{#markdown}}{{appContent.signIn}}{{/markdown}}
+      </div>
+    </div>
+  {{/if}}
+
     <div class="col s12 l8 offset-l2 white z-depth-2">
       <div class="container">
         <div class="section">
