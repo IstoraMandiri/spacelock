@@ -1,5 +1,5 @@
 <template name="home">
-  <h3>Hello, {{$.Meteor.userId}}</h3>
+  <h3>Hello, {{$.Meteor.user.profile.name}}</h3>
   <div class="divider"></div>
 
   {{#if appContent.home}}

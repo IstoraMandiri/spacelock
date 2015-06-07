@@ -56,6 +56,16 @@ for route in SpaceLock.routes.main
     Router.route route.path,
       name: route.name
 
+# user route
+Router.route '/users/:_userId', ->
+  @render 'user',
+    data: ->
+      console.log 'got', Meteor.users.findOne @params._userId
+      Meteor.users.findOne @params._userId
+,
+  name: 'user'
+
+
 # sign in route
 Router.route 'sign-in'
 

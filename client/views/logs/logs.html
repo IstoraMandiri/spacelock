@@ -28,7 +28,7 @@
     <table>
       <thead>
         <tr>
-          <th data-fiel="time">Time</th>
+          <th>Time</th>
           <th>Event</th>
           <th colspan="100">Data</th>
         </tr>
@@ -36,20 +36,23 @@
       <tbody>
         {{#each logs}}
           <tr>
-            <td>{{createdAt}}</td>
+            <td>{{formatDateTime createdAt}}</td>
             <td>{{type}}</td>
             {{#if data.user}}
               <td>{{data.method}}</td>
-              <td><a href="#">{{data.user.name}}</a></td>
+              <td>
+                <a href="{{pathFor 'user' _userId=data.user._id}}">
+                  {{#if data.user.name}}
+                    {{data.user.name}}
+                  {{else}}
+                    [No Name]
+                  {{/if}}
+                </a>
+              </td>
             {{/if}}
           </tr>
         {{/each}}
       </tbody>
     </table>
   </div>
-</template>
-
-
-<template name="log">
-
 </template>

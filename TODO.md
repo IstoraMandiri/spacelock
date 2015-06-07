@@ -2,12 +2,17 @@
 - EZModal + Materialize
   - Confirm Logout
 
-- Pub/Sub, Allow/Deny
+- Pub/Sub
   - Paginated Subscriptions
-  - User fields
+  x User fields
+  - Config fields
+
+- Allow/Deny
 
 - Users
-  - Users list + fuzzy search
+  x Users list
+  - Fuzzy search
+  - Sorting
   - User Editor
     - Image upload
     - Edit Name
@@ -23,7 +28,6 @@
   - Logs list + fuzzy search
   - Export list
   - Clear logss
-
 
 
 
