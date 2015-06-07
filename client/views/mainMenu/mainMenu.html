@@ -1,0 +1,17 @@
+<template name='mainMenu'>
+  <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+  <ul class="right hide-on-med-and-down">
+    {{> mainMenuItems}}
+  </ul>
+  <ul class="side-nav" id="mobile-demo">
+    {{> mainMenuItems}}
+  </ul>
+</template>
+
+<template name="mainMenuItems">
+  <li><a href="{{pathFor 'home'}}">Home</a></li>
+  <li><a href="{{pathFor 'logs'}}">Logs</a></li>
+  <li><a href="{{pathFor 'users'}}">Users</a></li>
+  <li><a href="{{pathFor 'settings'}}">Settings</a></li>
+  <li><a href="#" class='logout'>Logout</a></li>
+</template>

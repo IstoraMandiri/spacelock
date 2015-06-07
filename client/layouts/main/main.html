@@ -1,0 +1,60 @@
+<head>
+  <title>SpaceLock</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+</head>
+
+<body>
+</body>
+
+<template name='mainLayout'>
+  {{> navbar}}
+
+  <main class='main-{{routeName}}'>
+    <div class="container">
+      <div class='section'>
+        {{> yield}}
+      </div>
+    </div>
+  </main>
+
+  {{> footer}}
+</template>
+
+<template name='loading'>
+  <div class="preloader-wrapper big active">
+    <div class="spinner-layer spinner-blue-only">
+      <div class="circle-clipper">
+        <div class="circle"></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name='navbar'>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo">SpaceLock</a>
+      {{#if $.Meteor.userId}}
+        {{> mainMenu}}
+      {{/if}}
+    </div>
+  </nav>
+</template>
+
+<template name='footer'>
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <h5 class="white-text">Company Bio</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Spacelock was created by <a class="orange-text text-lighten-3" target="_blank" href="http://github.com/hitchcott">Chris Hitchcott</a>
+      </div>
+    </div>
+  </footer>
+</template>
