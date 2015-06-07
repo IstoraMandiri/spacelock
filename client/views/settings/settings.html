@@ -1,11 +1,9 @@
 <template name='settings'>
-  <h3>System Settings</h3>
+  <h3>Settings</h3>
   <div class="section">
     {{> settingsSubmenu}}
   </div>
-  <div class="section">
-    {{> yield 'subsection'}}
-  </div>
+  {{> yield 'subsection'}}
 </template>
 
 <template name='settingsSubmenu'>
@@ -16,14 +14,16 @@
   {{/each}}
 </template>
 
-<template name='settingsContent'>
-  <p>Edit content here</p>
-</template>
-
-<template name='settingsTwitter'>
-  <p>Edit twitter settings here</p>
+<template name='settingsSocial'>
+  <div class="section">
+    <h4>Social Network Integrations</h4>
+    <p>Configure twitter account and message sendout</p>
+  </div>
 </template>
 
 <template name='settingsDoor'>
-  <p>Edit door settings here</p>
+  <div class="section">
+    <h4>Door Configuration</h4>
+    <p>Set options for various things in the door app</p>
+  </div>
 </template>

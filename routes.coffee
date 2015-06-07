@@ -25,8 +25,8 @@
     title: 'Content'
     name: 'content'
   ,
-    title: 'Twitter'
-    name: 'twitter'
+    title: 'Social'
+    name: 'social'
   ,
     title: 'Door'
     name: 'door'

@@ -1,0 +1,17 @@
+
+<template name='settingsContent'>
+  <div class="section">
+    <h4>App Content Editor</h4>
+    <p>Edit the text boxes below to customise wording throughout the app</p>
+  </div>
+  <div class="section">
+    {{#each contentFields}}
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea{{i}}" name="{{name}}" class="materialize-textarea">{{value}}</textarea>
+          <label class='active' for="textarea{{i}}">{{title}}</label>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</template>
