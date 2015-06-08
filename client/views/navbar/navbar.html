@@ -1,11 +1,13 @@
 
 <template name='navbar'>
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container">
-      <a href="#" class="brand-logo">{{appContent.appTitle}}</a>
-      {{#if $.Meteor.userId}}
-        {{> mainMenu}}
-      {{/if}}
-    </div>
-  </nav>
+  <div class="navbar-fixed">
+    <nav class="light-blue lighten-1" role="navigation">
+      <div class="nav-wrapper container">
+        <a href="#" class="brand-logo">{{appContent.appTitle}}</a>
+        {{#if $.Meteor.userId}}
+          {{> mainMenu}}
+        {{/if}}
+      </div>
+    </nav>
+  </div>
 </template>

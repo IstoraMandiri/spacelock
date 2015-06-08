@@ -65,7 +65,12 @@ Router.route '/users/:_userId', ->
 
 
 # sign in route
-Router.route 'sign-in'
+Router.route '/sign-in', ->
+  if Meteor.user()
+    @redirect '/'
+  else
+    @render 'sign-in'
+
 
 # build settings submenu routes
 SettingsController = RouteController.extend
