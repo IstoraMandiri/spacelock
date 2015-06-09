@@ -51,4 +51,4 @@ Meteor.methods
         user: insertedUser
 
     # actually open the door
-    console.log 'opening door!'
+    console.log "opening door for #{insertedUser.name} !"

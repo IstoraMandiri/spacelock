@@ -9,6 +9,21 @@ main {
   flex: 1 0 auto;
 }
 
-input.input-large{
+input.input-large, .at-form input{
   font-size:2em;
+}
+.at-form .card-panel span i{
+  font-size:1.2em;
+}
+.at-form .card-panel span i::before{
+  color:orange;
+}
+.at-form .card-panel span{
+  display:block;
+}
+.at-form .card-panel span::after{
+  clear:both;
+}
+.at-form .card-panel{
+  margin-bottom:60px;
 }
