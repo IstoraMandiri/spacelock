@@ -59,7 +59,7 @@ for route in SpaceLock.routes.main
 # user route
 Router.route '/users/:_userId', ->
   @render 'user',
-    data: -> Meteor.users.findOne @params._userId
+    data: -> SpaceLock.cols.Users.findOne @params._userId
 ,
   name: 'user'
 

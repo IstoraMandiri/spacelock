@@ -1,13 +1,9 @@
-insertLog = (options) ->
-  options.createdAt = new Date()
-  SpaceLock.cols.Logs.insert options
-
 Meteor.methods
   'requestAccess' : (options) ->
 
     if options.loginType is 'user'
       # if logging in via meteor app, use the userId ...
-      user = Meteor.users.findOne @userId
+      user = SpaceLock.cols.Users.findOne @userId
       unless user
         throw new Meteor.Error 'User Not Found'
 
@@ -18,13 +14,13 @@ Meteor.methods
       unless options._cardId
         throw new Meteor.Error 'Card ID Not Provided'
       # ... otherwise, use the _cardId to find the user
-      user = Meteor.users.findOne _cardId: options._cardId
+      user = SpaceLock.cols.Users.findOne _cardId: options._cardId
 
       # todo check roles/permissions
 
       unless user
         # if a card was used but the user was not found, log the error
-        insertLog
+        SpaceLock.cols.Logs.insert
           type: 'invalidCard'
           data:
             _cardId: options._cardId
@@ -44,7 +40,7 @@ Meteor.methods
       insertedUser._cardId = user._cardId
 
     # authentication passed
-    insertLog
+    SpaceLock.cols.Logs.insert
       type: 'openDoor'
       data:
         method: options.loginType

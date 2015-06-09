@@ -20,7 +20,7 @@ Template.userViewer.helpers
       #     $options: 'i'
       ]
 
-    Meteor.users.find query, sort: createdAt: -1
+    SpaceLock.cols.Users.find query, sort: createdAt: -1
 
 Template.userViewer.events
   'keyup #searchUsers' : (e) ->
