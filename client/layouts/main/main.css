@@ -12,14 +12,16 @@ main {
 input.input-large, .at-form input{
   font-size:2em;
 }
+input.input-huge{
+  font-size:4em;
+  height:1.7em;
+}
 .at-form .card-panel span i{
   font-size:1.2em;
 }
-.at-form .card-panel span i::before{
-  color:orange;
-}
 .at-form .card-panel span{
   display:block;
+  padding:4px;
 }
 .at-form .card-panel span::after{
   clear:both;

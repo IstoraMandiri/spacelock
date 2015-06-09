@@ -20,8 +20,6 @@ Template.userViewer.helpers
       #     $options: 'i'
       ]
 
-
-    console.log 'setting query to', JSON.stringify query, null, 2
     Meteor.users.find query, sort: createdAt: -1
 
 Template.userViewer.events

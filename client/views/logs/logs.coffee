@@ -35,7 +35,7 @@ Template.logViewer.helpers
       query['createdAt']['$lt'] = new Date(endFilter)
     # Meteor.logs.find query, sort: createdAt: -1
 
-S    SpaceLock.cols.Logs.find query, sort: createdAt: -1
+    SpaceLock.cols.Logs.find query, sort: createdAt: -1
 
 
 Template.logViewer.events
