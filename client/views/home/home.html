@@ -8,7 +8,25 @@
     </div>
   {{/if}}
 
-  <div class="section">
-    <a class="unlock-door waves-effect waves-light btn-large"><i class="mdi-action-lock-open right"></i>Unlock Door</a>
-  </div>
+  {{#with $.Meteor.user}}
+    {{#if isInRole 'appEntry'}}
+      <div class="section">
+        <a class="unlock-door waves-effect waves-light btn-large"><i class="mdi-action-lock-open right"></i>Unlock Door</a>
+      </div>
+    {{/if}}
+    {{#if hasCard}}
+      {{#if isInRole 'cardEntry'}}
+        <div class="section">
+          <h5><i class='mdi-action-credit-card'></i> Your card is active!</h5>
+          <p>You can scan your card to unlock the door.</p>
+        </div>
+      {{else}}
+        <div class="section red-text text-darken-2">
+          <h5><i class='mdi-alert-warning'></i> Your has been deactivated!</h5>
+          <p>Please return your card to a staff member.</p>
+        </div>
+      {{/if}}
+    {{/if}}
+  {{/with}}
+
 </template>

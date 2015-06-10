@@ -2,36 +2,34 @@
 - EZModal + Materialize
   - Confirm Logout
 
-- Pub/Sub
-  - Paginated Subscriptions
+~ Pub/Sub
   x User fields
+  - Paginated Subscriptions
   - Config fields
 
-- Allow/Deny
+x Allow/Deny
 
 - Users
   x Users list
-  - Fuzzy search
+  x Fuzzy search
   - Sorting
   - User Editor
-    - Image upload
-    - Edit Name
-    - Create / Revoke Card (random ID)
-      - Send to thingy
+    x Image upload
+    x Edit Name
+    x Create / Revoke Card (random ID)
     - Remove user
-    - User Roles
-      - Admin
-      - cardOpen
-      - phoneOpen
+    x User Roles
+      x Admin
+      x cardOpen
+      x phoneOpen
 
 - Logs
-  - Logs list + fuzzy search
+  x Logs list + fuzzy search
+  x Clear logss
   - Export list
-  - Clear logss
-
-
 
 - Open Door Method
   - GPIO: Open door for x seoncds
-
-- Card Scanner -- How does that work?
+  - Create card
+  - Scan card
+  - Card Scanner -- How does that work?

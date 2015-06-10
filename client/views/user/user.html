@@ -5,33 +5,50 @@
         <div class="row">
           <div class="col s12 m4">
             <img src="{{getFileUrl profile.image}}" style='width:100%;' alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-            <div class="file-field input-field image-upload center-text">
-              <div class="btn">
-                <span>Upload Image</span>
-                <input class='image-upload-input' type="file" />
+            {{#if isInRole 'admin'}}
+              <div class="file-field input-field image-upload center-text">
+                <div class="btn">
+                  <span>Upload Image</span>
+                  <input class='image-upload-input' type="file" />
+                </div>
               </div>
-            </div>
+            {{/if}}
 
           </div>
           <div class="col s12 m7 offset-m1 font-small user-profile">
             <div class="row">
               <div class="col s12">
-                <input class="input-large update-field" name="profile.name" type="text" value="{{profile.name}}">
+                {{#if isInRole 'admin'}}
+                  <input class="input-large update-field" name="profile.name" type="text" value="{{profile.name}}">
+                {{else}}
+                  <h4>{{profile.name}}</h4>
+                  <div class="divider"></div>
+                {{/if}}
                 <h6>Joined <b>{{formatDate createdAt}}</b></h6>
               </div>
             </div>
-            <div class="row">
-              <div class="section col s12">
-                <h6>Todos</h6>
-                <p>Generate, Remove Card Id</p>
-                <p>Roles</p>
-                <ul>
-                  <li>keyEntry</li>
-                  <li>appEntry</li>
-                  <li>admin</li>
-                </ul>
+            {{#if isInRole 'admin'}}
+              <div class="row">
+                <div class="section col s12">
+                  {{#if hasCard}}
+                    <div class="btn red destroy-card">Destroy Card</div>
+                  {{else}}
+                    <div class="btn blue generate-card">Generate Card</div>
+                  {{/if}}
+
+                  <!-- todo: roles, admin disabled if admin and user is user -->
+                  <form class='section'>
+                    {{#each configurableRoles}}
+                      <p>
+                        <input id="cb{{i}}" type="checkbox" class="toggle-role" name="{{role}}" checked="{{hasRole}}"/>
+                        <label for="cb{{i}}">{{text}}</label>
+                      </p>
+                    {{/each}}
+                  </form>
+
+                </div>
               </div>
-            </div>
+            {{/if}}
           </div>
         </div>
       </div>

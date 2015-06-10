@@ -2,9 +2,9 @@
 
 SpaceLock.cols =
     Users: Meteor.users
+    Roles: Meteor.roles
     Settings: new Mongo.Collection 'Settings'
     Logs: new Mongo.Collection 'Logs'
-
     Images: new FS.Collection 'Images',
       filter:
         allow: { contentTypes: ['image/*'] }
@@ -30,45 +30,60 @@ SpaceLock.cols =
 
 
 
-
+adminAuth = (userId) -> Roles.userIsInRole userId, 'admin'
+userAuth = (userId) -> userId
 # allow/deny
 for key, col of SpaceLock.cols
+
 
   # todo, secure properly
   if key is 'Images'
     col.allow
-      insert: -> true
-      update: -> true
-      remove: -> true
+      insert: adminAuth
+      update: adminAuth
+      remove: adminAuth
       download: -> true
 
   else
     col.allow
-      insert: -> true
-      update: -> true
-      remove: -> true
+      insert: adminAuth
+      update: adminAuth
+      remove: adminAuth
 
 # pub/sub
 
 if Meteor.isServer
 
-  userFields =
-    'profile': 1
-    'createdAt': 1
-
   SpaceLock.pubs =
-    Logs: Meteor.publish 'Logs', -> SpaceLock.cols.Logs.find()
-    Settings: Meteor.publish 'Settings', -> SpaceLock.cols.Settings.find()
-    Users: Meteor.publish 'Users', -> SpaceLock.cols.Users.find({},{fields:userFields})
-    Images: Meteor.publish 'Images', -> SpaceLock.cols.Images.find()
+
+    Logs: Meteor.publish 'Logs', ->
+      if adminAuth @userId then SpaceLock.cols.Logs.find()
+
+    # TODO
+    Settings: Meteor.publish 'Settings', ->
+      SpaceLock.cols.Settings.find()
+
+    Roles: Meteor.publish 'Roles', ->
+      if userAuth @userId then SpaceLock.cols.Roles.find()
+
+    Images: Meteor.publish 'Images', ->
+      if adminAuth @userId then SpaceLock.cols.Images.find()
+
+    Users: Meteor.publish 'Users', ->
+      if userAuth @userId
+        query = if adminAuth @userId then {} else _id: @userId
+        SpaceLock.cols.Users.find query,
+          fields: { profile: 1, createdAt: 1, hasCard: 1, roles:1 }
+
 
 if Meteor.isClient
 
   SpaceLock.subs =
     Logs: Meteor.subscribe 'Logs'
+    Roles: Meteor.subscribe 'Roles'
     Settings: Meteor.subscribe 'Settings'
-    Users: Meteor.subscribe 'Users'
     Images: Meteor.subscribe 'Images'
+    Users: Meteor.subscribe 'Users'
 
 
 # collection hooks

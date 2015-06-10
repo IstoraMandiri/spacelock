@@ -5,7 +5,10 @@ Template.mainMenu.rendered = ->
 Template.mainMenuItems.helpers
   menuItems: ->
     currentRoute = SpaceLock.helpers.currentRouteName()
-    return _.map SpaceLock.routes.main, (obj) ->
+    isAdmin = Roles.userIsInRole Meteor.user(), 'admin'
+    filteredRoutes = _.filter SpaceLock.routes.main, (route) ->
+      isAdmin or !route.adminOnly
+    return _.map filteredRoutes, (obj) ->
       obj.active = currentRoute.indexOf(obj.name) is 0
       return obj
 

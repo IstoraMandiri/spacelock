@@ -7,13 +7,15 @@
 meteor-platform
 coffeescript
 less
+random
 accounts-password
 showdown
+msavin:mongol
 materialize:materialize
 useraccounts:materialize
 raix:handlebar-helpers
-msavin:mongol
 matb33:collection-hooks
+alanning:roles
 cfs:standard-packages
 cfs:gridfs
 cfs:graphicsmagick

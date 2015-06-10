@@ -11,14 +11,17 @@
     title: 'Logs'
     name: 'logs'
     path: '/logs'
+    adminOnly: true
   ,
     title: 'Users'
     name: 'users'
     path: '/users'
+    adminOnly: true
   ,
     title: 'Settings'
     name: 'settings'
     path: '/settings'
+    adminOnly: true
   ]
 
   settings: [
@@ -41,6 +44,7 @@ Router.configure
       @render 'loading'
     else if Meteor.user()
       @next()
+    # TODO redirect if not admin
     else if @route.getName() isnt 'sign-in'
       @redirect 'sign-in'
     else
