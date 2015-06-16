@@ -14,6 +14,13 @@
         <a class="unlock-door waves-effect waves-light btn-large"><i class="mdi-action-lock-open right"></i>Unlock Door</a>
       </div>
     {{/if}}
+
+    {{#if isInRole 'admin'}}
+      <div class="section">
+        <a class="timed-unlock-door waves-effect waves-light btn-large cyan"><i class="mdi-av-timer right"></i>Unlock with Timer</a>
+      </div>
+    {{/if}}
+
     {{#if hasCard}}
       {{#if isInRole 'cardEntry'}}
         <div class="section">
