@@ -1,10 +1,28 @@
 # Priority
 
-- GPI O for door -> LED
-- Timed unlock for admins
+x GPI O for door -> LED
+x Timed unlock for admins
 - NFC Cards
   - Add cards collection, add 'newCard' method, modify unlock door method
   - Implement accessToken generation on unlock
+
+New schemas
+
+- Cards Collection (keys are cards/qrs/invites/etc)
+  See schema below
+
+- Doors Collection (so a single istance can handle multiple doors in one venue)
+  _id
+  name
+  message
+  css
+  timer(s)
+  user whitelist/blacklist
+  etc.
+  locked: true/false <--- this is important
+
+- Job collection?
+
 
 
 # All Todos

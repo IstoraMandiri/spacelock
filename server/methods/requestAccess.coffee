@@ -49,8 +49,12 @@ Meteor.methods
         method: options.loginType
         user: insertedUser
 
+    # TODO refactor / secure
+    if options.unlockTime and Roles.userIsInRole user, 'admin'
+      unlockTime = options.unlockTime
+
     # actually open the door
     console.log "opening door for #{insertedUser.name} !"
-    SpaceLock.door.unlock()
+    SpaceLock.door.unlock unlockTime
 
-    return
+    return true

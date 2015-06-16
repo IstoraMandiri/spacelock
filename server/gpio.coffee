@@ -2,7 +2,7 @@ DOOR_LOCK_PIN = 12
 
 @SpaceLock = @SpaceLock || {}
 
-# TODO implement an observer to do this!
+# TODO implement an observer to do this?
 
 # include gpio npm module
 try
@@ -42,3 +42,6 @@ unless SpaceLock.gpio?
     lockDoor : ->
       gpio.write DOOR_LOCK_PIN, 1
       console.log 'Door locked'
+
+
+
