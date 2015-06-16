@@ -1,6 +1,8 @@
 Meteor.methods
   'requestAccess' : (options) ->
 
+    # todo - modularize loginType section
+
     if options.loginType is 'user'
       # if logging in via meteor app, use the userId ...
       user = SpaceLock.cols.Users.findOne @userId
@@ -39,6 +41,7 @@ Meteor.methods
     if user._cardId
       insertedUser._cardId = user._cardId
 
+
     # authentication passed
     SpaceLock.cols.Logs.insert
       type: 'openDoor'
@@ -48,3 +51,6 @@ Meteor.methods
 
     # actually open the door
     console.log "opening door for #{insertedUser.name} !"
+    SpaceLock.door.unlock()
+
+    return

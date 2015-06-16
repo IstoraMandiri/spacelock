@@ -19,3 +19,7 @@ alanning:roles
 cfs:standard-packages
 cfs:gridfs
 cfs:graphicsmagick
+meteorhacks:npm
+
+
+npm-container

@@ -1,6 +1,6 @@
 # Priority
 
-- GPIO for door -> LED
+- GPI O for door -> LED
 - Timed unlock for admins
 - NFC Cards
   - Add cards collection, add 'newCard' method, modify unlock door method
