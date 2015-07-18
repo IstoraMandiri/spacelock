@@ -21,22 +21,26 @@ for device in devices
 
   if device.deviceDescriptor.idVendor is 2689 and
   device.deviceDescriptor.idProduct is 517
-
     try
       device.open()
 
       do startTransfer = ->
 
-        # this line is because the RFID reader is recognized as a keyboard when plugged
+
         theInterface = device.interfaces[0];
 
         if theInterface.isKernelDriverActive()
           theInterface.detachKernelDriver();
-        # console.log theInterface
-        theInterface.claim();
+
+        try
+          theInterface.claim();
+        catch
+          console.log 'Failed to claim interface'
+
         theEndpoint = theInterface.endpoints[0];
 
-        getCode = Meteor.wrapAsync (callback) ->
+
+        test = Meteor.wrapAsync (callback) ->
           theEndpoint.transfer 180, (err, data) ->
             code = ""
             if data
@@ -49,17 +53,16 @@ for device in devices
 
             callback null, code
 
-        console.log getCode()
+        thisCode = test()
 
-        # Meteor.call 'requestAccess',
-        #   loginType: 'card'
-        #   _cardId: code
+        Meteor.call 'requestAccess',
+          loginType: 'card'
+          _cardId: thisCode
 
         # TODO -- reset is a hack; otherwise transfered data is not consistent
         device.reset startTransfer
 
       break
 
-    catch
-
-      console.log 'Problem with RFID scanner.'
+    catch e
+      console.log 'Problem with RFID scanner.', e
