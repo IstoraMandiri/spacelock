@@ -30,10 +30,8 @@ Template.logViewer.helpers
     if startFilter
       query['createdAt']['$gt'] = new Date(startFilter)
 
-
     if endFilter
       query['createdAt']['$lt'] = new Date(endFilter)
-    # Meteor.logs.find query, sort: createdAt: -1
 
     SpaceLock.cols.Logs.find query, sort: createdAt: -1
 

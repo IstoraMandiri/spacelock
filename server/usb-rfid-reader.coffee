@@ -32,13 +32,9 @@ for device in devices
         if theInterface.isKernelDriverActive()
           theInterface.detachKernelDriver();
 
-        try
-          theInterface.claim();
-        catch
-          console.log 'Failed to claim interface'
+        theInterface.claim();
 
         theEndpoint = theInterface.endpoints[0];
-
 
         test = Meteor.wrapAsync (callback) ->
           theEndpoint.transfer 180, (err, data) ->
@@ -55,9 +51,12 @@ for device in devices
 
         thisCode = test()
 
-        Meteor.call 'requestAccess',
-          loginType: 'card'
-          _cardId: thisCode
+        console.log 'thisCode', thisCode
+
+        if thisCode
+          Meteor.call 'requestAccess',
+            loginType: 'card'
+            _cardId: thisCode
 
         # TODO -- reset is a hack; otherwise transfered data is not consistent
         device.reset startTransfer

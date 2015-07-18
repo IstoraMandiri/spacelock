@@ -58,7 +58,7 @@ x Allow/Deny
   - Export list
 
 - Open Door Method
-  - GPIO: Open door for x seoncds
+  x GPIO: Open door for x seoncds
   - Create card
   - Scan card
   - Card Scanner -- How does that work?
