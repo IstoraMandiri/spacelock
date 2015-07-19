@@ -53,8 +53,6 @@ for device in devices
               Meteor.call 'requestAccess',
                 loginType: 'card'
                 _cardId: code
-            catch e
-              console.log e
 
           device.reset startTransfer
 

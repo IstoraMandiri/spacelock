@@ -27,6 +27,10 @@ Template.user.events
 
   'click .generate-card' : -> Meteor.call 'generateCard', @_id
 
+  'click .set-card' : ->
+    if _cardId = prompt 'Enter Card Id'
+      Meteor.call 'setCardId', { userId: @_id, _cardId: _cardId}
+
   'click .destroy-card' : -> Meteor.call 'destroyCard', @_id
 
 Template.user.helpers

@@ -1,7 +1,5 @@
 @SpaceLock = @SpaceLock || {}
 
-console.log 'setting cols', SpaceLock
-
 SpaceLock.cols =
     Users: Meteor.users
     Roles: Meteor.roles
@@ -29,7 +27,6 @@ SpaceLock.cols =
             .stream('JPEG')
             .pipe(writeStream);
       ]
-
 
 
 adminAuth = (userId) -> Roles.userIsInRole userId, 'admin'
