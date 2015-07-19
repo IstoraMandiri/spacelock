@@ -37,7 +37,7 @@ for device in devices
 
         theEndpoint = theInterface.endpoints[0];
 
-        theEndpoint.transfer 64*3, Meteor.bindEnvironment (err,data) ->
+        theEndpoint.transfer 16*12, Meteor.bindEnvironment (err,data) ->
           code = ""
 
           if data
