@@ -42,6 +42,9 @@
             <td>{{formatDateTime createdAt}}</td>
             <td>
               <a href="{{pathFor 'user' _userId=_id}}">
+                {{#if profile.image}}
+                  <img src="{{getFileUrl profile.image store='thumb'}}" alt="" class="circle responsive-img profile-img-thumb"> <!-- notice the "circle" class -->
+                {{/if}}
                 {{#if profile.name}}
                   {{profile.name}}
                 {{else}}
@@ -49,8 +52,8 @@
                 {{/if}}
               </a>
             </td>
-            <td>-</td>
-            <td>-</td>
+            <td>{{doorsOpened}}</td>
+            <td>{{humanDate latestLogin}}</td>
             <td></td>
           </tr>
         {{/each}}

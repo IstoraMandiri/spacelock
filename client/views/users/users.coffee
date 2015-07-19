@@ -22,6 +22,11 @@ Template.userViewer.helpers
 
     SpaceLock.cols.Users.find query, sort: createdAt: -1
 
+  doorsOpened : -> SpaceLock.cols.Logs.find({ type: 'openDoor', 'data.user._id': @_id }).count()
+  latestLogin : -> SpaceLock.cols.Logs.find({ type: 'openDoor', 'data.user._id': @_id }, { $sort: { createdAt: -1 }})?.createdAt
+
+
+
 Template.userViewer.events
   'keyup #searchUsers' : (e) ->
     Session.set 'userSearchFilter', e.currentTarget.value

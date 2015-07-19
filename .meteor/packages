@@ -21,3 +21,4 @@ cfs:gridfs
 cfs:graphicsmagick
 meteorhacks:npm
 npm-container
+momentjs:moment

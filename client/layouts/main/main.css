@@ -29,3 +29,9 @@ input.input-huge{
 .at-form .card-panel{
   margin-bottom:60px;
 }
+
+.profile-img-thumb{
+  width:40px;
+  vertical-align:middle;
+  margin-right:10px;
+}
