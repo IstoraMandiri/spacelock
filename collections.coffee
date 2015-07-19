@@ -1,5 +1,7 @@
 @SpaceLock = @SpaceLock || {}
 
+console.log 'setting cols', SpaceLock
+
 SpaceLock.cols =
     Users: Meteor.users
     Roles: Meteor.roles

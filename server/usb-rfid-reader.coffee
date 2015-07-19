@@ -17,15 +17,16 @@ hexKeys =
   '27' : '0'
   '28' : '' # enter
 
+
 for device in devices
 
   if device.deviceDescriptor.idVendor is 2689 and
   device.deviceDescriptor.idProduct is 517
+    console.log 'found RFID scanning device!'
     try
       device.open()
 
-      do startTransfer = ->
-
+      do startTransfer = Meteor.bindEnvironment ->
 
         theInterface = device.interfaces[0];
 
@@ -36,30 +37,26 @@ for device in devices
 
         theEndpoint = theInterface.endpoints[0];
 
-        test = Meteor.wrapAsync (callback) ->
-          theEndpoint.transfer 180, (err, data) ->
-            code = ""
-            if data
-              hex = data.toString('hex')
-              # parse hex string into key code
-              for char, i in hex by 2
-                hexVal = hexKeys["#{hex[i]}#{hex[i+1]}"]
-                if hexVal
-                  code += hexVal
+        theEndpoint.transfer 64*3, Meteor.bindEnvironment (err,data) ->
+          code = ""
 
-            callback null, code
+          if data
+            hex = data.toString('hex')
+            # parse hex string into key code
+            for char, i in hex by 2
+              hexVal = hexKeys["#{hex[i]}#{hex[i+1]}"]
+              if hexVal
+                code += hexVal
 
-        thisCode = test()
+          if code
+            try
+              Meteor.call 'requestAccess',
+                loginType: 'card'
+                _cardId: code
+            catch e
+              console.log e
 
-        console.log 'thisCode', thisCode
-
-        if thisCode
-          Meteor.call 'requestAccess',
-            loginType: 'card'
-            _cardId: thisCode
-
-        # TODO -- reset is a hack; otherwise transfered data is not consistent
-        device.reset startTransfer
+          device.reset startTransfer
 
       break
 
