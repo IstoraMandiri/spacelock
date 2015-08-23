@@ -11,7 +11,7 @@
   {{#with $.Meteor.user}}
     {{#if isInRole 'appEntry'}}
       <div class="section">
-        <a class="unlock-door waves-effect waves-light btn-large"><i class="mdi-action-lock-open right"></i>Unlock Door</a>
+        <a class="unlock-door waves-effect waves-light btn-large"><i class="mdi-action-lock-open right"></i>{{#if needToExit}}Exit{{else}}Enter{{/if}} Space</a>
       </div>
       {{#if isInRole 'admin'}}
         <div class="section">

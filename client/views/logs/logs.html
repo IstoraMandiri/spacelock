@@ -64,6 +64,12 @@
             {{#if data._cardId}}
               <td>{{data._cardId}}</td>
             {{/if}}
+            {{#if direction}}
+              <td>{{direction}}</td>
+            {{/if}}
+            {{#if timeSpentInside}}
+              <td>{{formatDuration timeSpentInside}}</td>
+            {{/if}}
           </tr>
         {{/each}}
       </tbody>

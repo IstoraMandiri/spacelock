@@ -8,6 +8,7 @@ SpaceLock.helpers =
   formatDate : (date) -> new Date(date).toLocaleDateString()
   formatTime : (date) -> new Date(date).toLocaleTimeString()
   formatDateTime : (date) -> "#{SpaceLock.helpers.formatDate(date)} - #{SpaceLock.helpers.formatTime(date)}"
+  formatDuration : (time) -> moment.duration(time).humanize()
   humanDate : (date) -> moment(date).fromNow()
   getFileUrl : (fileId) -> SpaceLock.cols.Images.findOne(fileId)?.url()
 

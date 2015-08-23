@@ -56,27 +56,29 @@ if Meteor.isServer
   SpaceLock.pubs =
 
     Logs: Meteor.publish 'Logs', ->
-      if adminAuth @userId then SpaceLock.cols.Logs.find()
+      if adminAuth @userId then SpaceLock.cols.Logs.find() else @stop()
 
     # TODO
-    Settings: Meteor.publish 'Settings', ->
-      SpaceLock.cols.Settings.find()
+    Settings: Meteor.publish 'Settings', -> SpaceLock.cols.Settings.find()
 
     Roles: Meteor.publish 'Roles', ->
-      if userAuth @userId then SpaceLock.cols.Roles.find()
+      if userAuth @userId then SpaceLock.cols.Roles.find() else @stop()
 
     Images: Meteor.publish 'Images', ->
-      if adminAuth @userId then SpaceLock.cols.Images.find()
+      if adminAuth @userId then SpaceLock.cols.Images.find() else @stop()
 
     Users: Meteor.publish 'Users', ->
       if userAuth @userId
         query = if adminAuth @userId then {} else _id: @userId
         SpaceLock.cols.Users.find query,
           fields: { profile: 1, createdAt: 1, hasCard: 1, roles:1 }
+      else
+        @stop()
 
 
 if Meteor.isClient
 
+  # TODO optimize
   SpaceLock.subs =
     Logs: Meteor.subscribe 'Logs'
     Roles: Meteor.subscribe 'Roles'
