@@ -5,8 +5,12 @@ usb = Meteor.npmRequire 'usb'
 # deviceId format is [idVendor]-[idProduct]
 # TODO listen based on USB port number rather than device id
 SpaceLock.allowedDevices =
-  '2689-517' : 'enter'
-  '5050-24' : 'exit'
+  '2689-517' :
+    bytes: 16*12
+    direction: 'enter'
+  '5050-24' :
+    direction: 'exit'
+    bytes: 16*7
 
 devices = usb.getDeviceList()
 
@@ -26,7 +30,8 @@ hexKeys =
   '28' : '' # enter
 
 
-listenToDevce = (device, direction) ->
+
+listenToDevce = (device, deviceConfig) ->
   try
     device.open()
 
@@ -41,7 +46,7 @@ listenToDevce = (device, direction) ->
 
       theEndpoint = theInterface.endpoints[0];
 
-      theEndpoint.transfer 16*12, Meteor.bindEnvironment (err,data) ->
+      theEndpoint.transfer deviceConfig.bytes, Meteor.bindEnvironment (err,data) ->
         code = ""
 
         if data
@@ -57,7 +62,7 @@ listenToDevce = (device, direction) ->
             Meteor.call 'requestAccess',
               loginType: 'card'
               _cardId: code
-              direction: direction
+              direction: deviceConfig.direction
 
         device.reset startTransfer
 
