@@ -1,6 +1,5 @@
 Meteor.methods
   'requestAccess' : (options) ->
-    console.log 'requesting', options
     # todo - modularize loginType section
 
     if options.loginType is 'user'
@@ -33,6 +32,8 @@ Meteor.methods
       throw new Meteor.Error 'Invalid Login Type'
 
     # TODO check roles/permissions
+    # authentication passed
+
 
     # decorate user info
     insertedUser =
@@ -41,8 +42,6 @@ Meteor.methods
 
     if user._cardId
       insertedUser._cardId = user._cardId
-
-    # authentication passed
 
     # get previous entries, sorted by earliest
     if options.direction is 'exit'
@@ -80,18 +79,13 @@ Meteor.methods
 
     # if it's an exit, let's update all other entries with this ID for exitring
     # update the old entries with a reference to this logId
-    console.log 'unexited', unExitedEntries
     for entryLog in unExitedEntries
-      console.log entryLog._id, $set: exitEventId: logId
       SpaceLock.cols.Logs.update entryLog._id, $set: exitEventId: logId
 
-    console.log 'logging', log
-    # TODO refactor / secure
     if options.unlockTime and Roles.userIsInRole user, 'admin'
       unlockTime = options.unlockTime
 
     # actually open the door
-    console.log "opening door for #{insertedUser.name} !"
     SpaceLock.door.unlock unlockTime
 
     return true
