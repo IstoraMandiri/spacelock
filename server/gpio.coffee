@@ -1,4 +1,4 @@
-DOOR_LOCK_PIN = 12
+DOOR_LOCK_PIN = if process.env.SPACELOCK_GPIO_PIN then parseInt process.env.SPACELOCK_GPIO_PIN else 12
 
 @SpaceLock = @SpaceLock || {}
 
