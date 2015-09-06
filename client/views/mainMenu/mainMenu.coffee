@@ -13,4 +13,6 @@ Template.mainMenuItems.helpers
       return obj
 
 Template.mainMenuItems.events
-  'click .logout' : -> Meteor.logout()
+  'click .logout' : ->
+    if confirm "Really Logout?"
+      Meteor.logout()
