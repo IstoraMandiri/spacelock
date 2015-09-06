@@ -1,6 +1,7 @@
 disabledColor = 'pink'
 
-# todo convert this jquery disabled color to reactive class once we have door collection
+Session.set 'entryDisabled'
+
 needToExit = ->
   lastOpenEvent = SpaceLock.cols.Logs.findOne
     'type':'openDoor'
@@ -14,31 +15,32 @@ needToExit = ->
 
 Template.home.events
   'click .unlock-door' : (e) ->
-    $btn = $(event.target)
-    unless $btn.hasClass disabledColor
+    unless Session.get 'entryDisabled'
+      $btn = $(event.target)
       Meteor.call 'requestAccess',
         loginType: 'user'
         direction: if needToExit() then 'exit' else 'enter'
 
-      $btn.addClass disabledColor
+      Session.set 'entryDisabled', true
       setTimeout ->
-        $btn.removeClass disabledColor
+        Session.set 'entryDisabled', false
       , SpaceLock.helpers.mainConfig().door.openTime
 
   'click .timed-unlock-door' : (event,template) ->
-    $btn = $(event.target)
-    unlockTime = parseInt(prompt('How long? Seconds'))
-    if unlockTime > 1
-      unlockTime = unlockTime * 1000
-      unless $btn.hasClass disabledColor
+    unless Session.get 'entryDisabled'
+      $btn = $(event.target)
+      unlockTime = parseInt(prompt('How long? Seconds'))
+      if unlockTime > 1
+        unlockTime = unlockTime * 1000
         Meteor.call 'requestAccess',
           loginType: 'user'
           unlockTime: unlockTime
 
-        $btn.addClass disabledColor
+        Session.set 'entryDisabled', true
         Meteor.setTimeout ->
-          $btn.removeClass disabledColor
+          Session.set 'entryDisabled', false
         , unlockTime
 
 Template.home.helpers
   'needToExit' : needToExit
+  'entryDisabled' : -> Session.get 'entryDisabled'

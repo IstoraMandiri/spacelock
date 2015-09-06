@@ -11,11 +11,11 @@
   {{#with $.Meteor.user}}
     {{#if isInRole 'appEntry'}}
       <div class="section">
-        <a class="unlock-door waves-effect waves-light btn-large"><i class="mdi-action-lock-open right"></i>{{#if needToExit}}Exit{{else}}Enter{{/if}} Space</a>
+        <a class="unlock-door waves-effect waves-light btn-large{{#if entryDisabled}} pink{{/if}}"><i class="mdi-action-lock-open right"></i>{{#if needToExit}}Exit{{else}}Enter{{/if}} Space</a>
       </div>
       {{#if isInRole 'admin'}}
         <div class="section">
-          <a class="timed-unlock-door waves-effect waves-light btn-large"><i class="mdi-av-timer right"></i>Unlock with Timer</a>
+          <a class="timed-unlock-door waves-effect waves-light btn-large{{#if entryDisabled}} pink{{/if}}"><i class="mdi-av-timer right"></i>Unlock with Timer</a>
         </div>
       {{/if}}
     {{/if}}
