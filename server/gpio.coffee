@@ -1,4 +1,7 @@
 DOOR_LOCK_PIN = if process.env.SPACELOCK_GPIO_PIN then parseInt process.env.SPACELOCK_GPIO_PIN else 12
+DOOR_OPEN_PIN = if process.env.DOOR_OPEN_PIN then parseInt process.env.DOOR_OPEN_PIN else 16
+
+# TODO split up into gpio, gpio-door and gpio-sensor
 
 @SpaceLock = @SpaceLock || {}
 
@@ -10,13 +13,9 @@ try
 catch err
   # in dev mode
   console.log 'No GPIO detected. Dummy output only.'
-  SpaceLock.gpio =
-    unlockDoor : -> console.log '[dummy] Door unlocked'
-    lockDoor : -> console.log '[dummy] Door locked'
 
-
-unless SpaceLock.gpio?
-  console.log 'GPIO detected. Door locking by default...'
+if gpio
+  console.log 'GPIO detected.'
   # always open io pin on app start
 
   gpio.open DOOR_LOCK_PIN, "output"
@@ -35,13 +34,16 @@ unless SpaceLock.gpio?
   process.on 'uncaughtException', exitHandler.bind(null, exit: true)
 
 
-  SpaceLock.gpio =
-    unlockDoor : ->
+SpaceLock.gpio =
+  unlockDoor : ->
+    if gpio
       gpio.write DOOR_LOCK_PIN, 0
-      console.log 'Door unlocked'
-    lockDoor : ->
+    console.log "#{if gpio then "[dummy] " else "" }Door unlocked"
+
+  lockDoor : ->
+    if gpio
       gpio.write DOOR_LOCK_PIN, 1
-      console.log 'Door locked'
+    console.log "#{if gpio then "[gpio #{DOOR_LOCK_PIN}] " else "[dummy] " }Door locked"
 
 
 
