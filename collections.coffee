@@ -29,8 +29,8 @@ SpaceLock.cols =
       ]
 
 
-adminAuth = (userId) -> Roles.userIsInRole userId, 'admin'
-userAuth = (userId) -> userId
+adminAuth = SpaceLock.adminAuth = (userId) -> Roles.userIsInRole userId, 'admin'
+userAuth = SpaceLock.userAuth = (userId) -> userId
 # allow/deny
 for key, col of SpaceLock.cols
 

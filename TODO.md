@@ -2,11 +2,15 @@
 
 x GPI O for door -> LED
 x Timed unlock for admins
-- NFC Cards
-  - Add cards collection, add 'newCard' method, modify unlock door method
-  - Implement accessToken generation on unlock
 
-New schemas
+- Fix RFID Scanner Input
+- Add ability to delete users, or set password
+- Confirm on logout
+- Door open permissions
+- Lowpass/Hipass filter for door open event
+
+
+# New schemas
 
 - Cards Collection (keys are cards/qrs/invites/etc)
   See schema below
@@ -21,14 +25,8 @@ New schemas
   etc.
   locked: true/false <--- this is important
 
-- Job collection?
-
-
 
 # All Todos
-
-- EZModal + Materialize
-  - Confirm Logout
 
 ~ Pub/Sub
   x User fields
@@ -38,27 +36,15 @@ New schemas
 x Allow/Deny
 
 - Users
-  x Users list
-  x Fuzzy search
   - Sorting
   - User Editor
-    x Image upload
-    x Edit Name
-    x Create / Revoke Card (random ID)
     - User stats
     - Remove user
-    x User Roles
-      x Admin
-      x cardOpen
-      x phoneOpen
 
 - Logs
-  x Logs list + fuzzy search
-  x Clear logss
   - Export list
 
 - Open Door Method
-  x GPIO: Open door for x seoncds
   - Create card
   - Scan card
   - Card Scanner -- How does that work?

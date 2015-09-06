@@ -27,11 +27,19 @@ Template.user.events
 
   'click .generate-card' : -> Meteor.call 'generateCard', @_id
 
+  'click .destroy-card' : -> Meteor.call 'destroyCard', @_id
+
   'click .set-card' : ->
     if _cardId = prompt 'Enter Card Id'
-      Meteor.call 'setCardId', { userId: @_id, _cardId: _cardId}
+      Meteor.call 'setCardId', { userId: @_id, _cardId: _cardId}, (err,res) ->
+        alert err || "Card set to: #{_cardId}"
 
-  'click .destroy-card' : -> Meteor.call 'destroyCard', @_id
+  'click .set-password' : ->
+    if password = prompt 'Set new password (min 6 chars)'
+      Meteor.call 'setUserPassword', { userId: @_id, password: password}, (err, res) ->
+        alert err || "Password reset."
+
+
 
 Template.user.helpers
   configurableRoles: ->
