@@ -4,13 +4,7 @@ usb = Meteor.npmRequire 'usb'
 
 # deviceId format is [idVendor]-[idProduct]
 # TODO listen based on USB port number rather than device id
-SpaceLock.allowedDevices =
-  '2689-517' :
-    bytes: 16*12
-    direction: 'enter'
-  '5050-24' :
-    direction: 'exit'
-    bytes: 16*7
+SpaceLock.allowedDevices = JSON.parse Assets.getText "rfid-readers.json"
 
 devices = usb.getDeviceList()
 

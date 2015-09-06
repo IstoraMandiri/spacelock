@@ -1,0 +1,10 @@
+{
+  "2689-517" : {
+    "bytes": 192,
+    "direction": "enter"
+    },
+  "5050-24": {
+    "direction": "exit",
+    "bytes": 112
+  }
+}
