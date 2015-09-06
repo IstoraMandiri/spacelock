@@ -8,6 +8,18 @@ Meteor.methods
       unless user
         throw new Meteor.Error 'User Not Found'
 
+      # check allow app entry permissions
+      unless Roles.userIsInRole @userId, 'appEntry'
+        # log the error
+        SpaceLock.cols.Logs.insert
+          type: 'noAppPermission'
+          data:
+            user:
+              _id: user._id
+              name: user.profile?.name
+        # stop the method
+        throw new Meteor.Error 'User does not have permission to enter via app'
+
     else if options.loginType is 'card'
       # check that it's not being called by a client
       unless this.connection is null
@@ -18,6 +30,7 @@ Meteor.methods
       # ... otherwise, use the _cardId to find the user
       user = SpaceLock.cols.Users.findOne _cardId: options._cardId
 
+
       unless user
         # if a card was used but the user was not found, log the error
         SpaceLock.cols.Logs.insert
@@ -25,15 +38,27 @@ Meteor.methods
           data:
             _cardId: options._cardId
         # also throw to stop method
-        throw new Meteor.Error 'Card is Invalid'
+        throw new Meteor.Error 'Card is invalid'
+
+      # check allow card entry permissions
+      unless Roles.userIsInRole user._id, 'cardEntry'
+        # log the error
+        SpaceLock.cols.Logs.insert
+          type: 'noCardPermission'
+          data:
+            _cardId: options._cardId
+            user:
+              _id: user._id
+              name: user.profile?.name
+
+        # also throw to stop method
+        throw new Meteor.Error 'User does not have permission to enter via app'
 
     else
       # loginType wasn't user or card
       throw new Meteor.Error 'Invalid Login Type'
 
-    # TODO check roles/permissions
     # authentication passed
-
 
     # decorate user info
     insertedUser =

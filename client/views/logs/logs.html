@@ -49,6 +49,9 @@
           <tr>
             <td>{{formatDateTime createdAt}}</td>
             <td>{{type}}</td>
+            {{#if data._cardId}}
+              <td>{{data._cardId}}</td>
+            {{/if}}
             {{#if data.user}}
               <td>{{data.method}}</td>
               <td>
@@ -60,9 +63,6 @@
                   {{/if}}
                 </a>
               </td>
-            {{/if}}
-            {{#if data._cardId}}
-              <td>{{data._cardId}}</td>
             {{/if}}
             {{#if direction}}
               <td>{{direction}}</td>
