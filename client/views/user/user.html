@@ -26,6 +26,7 @@
                   <h4>{{profile.name}}</h4>
                   <div class="divider"></div>
                 {{/if}}
+                <h5>{{#each emails}}{{address}} {{/each}}</h5>
                 <h6>Joined <b>{{formatDate createdAt}}</b></h6>
               </div>
             </div>

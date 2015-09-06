@@ -71,7 +71,7 @@ if Meteor.isServer
       if userAuth @userId
         query = if adminAuth @userId then {} else _id: @userId
         SpaceLock.cols.Users.find query,
-          fields: { profile: 1, createdAt: 1, hasCard: 1, roles:1 }
+          fields: { profile: 1, createdAt: 1, hasCard: 1, roles:1, emails:1 }
       else
         @stop()
 

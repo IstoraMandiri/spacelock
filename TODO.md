@@ -3,11 +3,13 @@
 x GPI O for door -> LED
 x Timed unlock for admins
 
-- Fix RFID Scanner Input
-- Add ability to delete users, or set password
-- Confirm on logout
+x Add ability to delete users, or reset password
+x Confirm on logout
 - Door open permissions
+
+- Fix RFID Scanner Input
 - Lowpass/Hipass filter for door open event
+
 
 
 # New schemas
