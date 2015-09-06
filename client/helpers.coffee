@@ -5,11 +5,11 @@ SpaceLock.helpers =
   mainConfig : -> SpaceLock.cols.Settings.findOne('main') || {}
   appContent : -> SpaceLock.helpers.mainConfig().content
   JSONify : (str) -> JSON.stringify(str)
-  formatDate : (date) -> new Date(date).toLocaleDateString()
-  formatTime : (date) -> new Date(date).toLocaleTimeString()
+  formatDate : (date) -> if date then new Date(date).toLocaleDateString() else '?'
+  formatTime : (date) -> if date then new Date(date).toLocaleTimeString() else '?'
   formatDateTime : (date) -> "#{SpaceLock.helpers.formatDate(date)} - #{SpaceLock.helpers.formatTime(date)}"
-  formatDuration : (time) -> moment.duration(time).humanize()
-  humanDate : (date) -> moment(date).fromNow()
+  formatDuration : (time) -> if time then moment.duration(time).humanize() else '?'
+  humanDate : (date) -> if date then moment(date).fromNow() else '?'
   getFileUrl : (fileId) -> SpaceLock.cols.Images.findOne(fileId)?.url()
 
 for key, val of SpaceLock.helpers
