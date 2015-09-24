@@ -55,36 +55,51 @@ if Meteor.isServer
 
   SpaceLock.pubs =
 
-    Logs: Meteor.publish 'Logs', ->
-      if adminAuth @userId then SpaceLock.cols.Logs.find() else @stop()
-
     # TODO
     Settings: Meteor.publish 'Settings', -> SpaceLock.cols.Settings.find()
 
-    Roles: Meteor.publish 'Roles', ->
-      if userAuth @userId then SpaceLock.cols.Roles.find() else @stop()
+    Logs: Meteor.publish 'Logs', (auth) ->
+      if auth and adminAuth @userId
+        return SpaceLock.cols.Logs.find()
+      else
+        return @stop()
 
-    Images: Meteor.publish 'Images', ->
-      if adminAuth @userId then SpaceLock.cols.Images.find() else @stop()
 
-    Users: Meteor.publish 'Users', ->
-      if userAuth @userId
+    Roles: Meteor.publish 'Roles', (auth) ->
+      if auth and userAuth @userId
+        return SpaceLock.cols.Roles.find()
+      else
+        return @stop()
+
+
+    Images: Meteor.publish 'Images', (auth) ->
+      if auth and adminAuth @userId
+        return SpaceLock.cols.Images.find()
+      else
+        return @stop()
+
+    Users: Meteor.publish 'Users', (auth) ->
+      if auth and userAuth @userId
         query = if adminAuth @userId then {} else _id: @userId
         SpaceLock.cols.Users.find query,
           fields: { profile: 1, createdAt: 1, hasCard: 1, roles:1, emails:1 }
       else
-        @stop()
-
+        return @stop()
 
 if Meteor.isClient
 
-  # TODO optimize
-  SpaceLock.subs =
-    Logs: Meteor.subscribe 'Logs'
-    Roles: Meteor.subscribe 'Roles'
-    Settings: Meteor.subscribe 'Settings'
-    Images: Meteor.subscribe 'Images'
-    Users: Meteor.subscribe 'Users'
+  SpaceLock.subs = {}
+  SpaceLock.subs.Settings = Meteor.subscribe 'Settings'
+
+  Tracker.autorun ->
+    isAdminAuthorized = adminAuth Meteor.userId()
+    SpaceLock.subs.Logs = Meteor.subscribe 'Logs', isAdminAuthorized
+    SpaceLock.subs.Roles = Meteor.subscribe 'Roles', isAdminAuthorized
+    SpaceLock.subs.Images = Meteor.subscribe 'Images', isAdminAuthorized
+
+  Tracker.autorun ->
+    isUserAuthorized = userAuth Meteor.userId()
+    SpaceLock.subs.Users = Meteor.subscribe 'Users', isUserAuthorized
 
 
 # collection hooks
