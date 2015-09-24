@@ -5,10 +5,9 @@ x Timed unlock for admins
 x Add ability to delete users, or reset password
 x Confirm on logout
 x Door open permissions
+x Fix RFID Scanner Input
 
-- Fix RFID Scanner Input
 - Lowpass/Hipass filter for door open event
-
 
 
 # New schemas
