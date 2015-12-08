@@ -1,14 +1,13 @@
 # Priority
 
-x GPI O for door -> LED
-x Timed unlock for admins
-x Add ability to delete users, or reset password
-x Confirm on logout
-x Door open permissions
-x Fix RFID Scanner Input
+- Secure the methods
+- Add a 'manager' permissions
+  - View logs only
+- Change 'user' to 'app' in logs
+- Paginated pub/sub of logs
+
 
 - Lowpass/Hipass filter for door open event
-
 
 # New schemas
 
