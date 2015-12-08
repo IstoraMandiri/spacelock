@@ -1,3 +1,4 @@
+```
 # if this is the very first time on the pi, do the following first:
 
 sudo su -;
@@ -79,3 +80,5 @@ MONGO_URL=mongodb://localhost:27017/spacelock PORT=80 ROOT_URL=http://spacelock.
 # Add the following to `/etc/init.d/spacelock`
 
 TODO: ADD startup script
+
+```
