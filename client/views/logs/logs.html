@@ -36,11 +36,17 @@
   </div>
 
   <div class="row">
-    <table class='responsive-table bordered'>
-      <tbody>
-        {{#each logs}}
-          <tr class="{{rowColor}}">
-            <td>{{formatDateTime createdAt}}</td>
+    {{>logsTable logs=logs}}
+  </div>
+</template>
+
+<template name="logsTable">
+  <table class='responsive-table bordered'>
+    <tbody>
+      {{#each logs}}
+        <tr class="{{rowColor}}">
+          <td>{{formatDateTime createdAt}}</td>
+          {{#unless ../hideUser}}
             {{#if data.user}}
               <td>
                 <a href="{{pathFor 'user' _userId=data.user._id}}">
@@ -56,25 +62,25 @@
                 </a>
               </td>
             {{/if}}
-            <td>
-              <i class="mdi-{{eventIcon}}"></i>
-              {{#if data._cardId}}
-                {{data._cardId}}
-              {{/if}}
-              <i class="mdi-{{methodIcon}}"></i>
-              {{#if direction}}
-                <i class="mdi-{{directionIcon}}"></i>
-                {{direction}}
-              {{/if}}
-            </td>
-            <td>
-              {{#if timeSpentInside}}
-                {{formatDuration timeSpentInside}}
-              {{/if}}
-            </td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
+          {{/unless}}
+          <td>
+            <i class="mdi-{{eventIcon}}"></i>
+            {{#if data._cardId}}
+              {{data._cardId}}
+            {{/if}}
+            <i class="mdi-{{methodIcon}}"></i>
+            {{#if direction}}
+              <i class="mdi-{{directionIcon}}"></i>
+              {{direction}}
+            {{/if}}
+          </td>
+          <td>
+            {{#if timeSpentInside}}
+              {{formatDuration timeSpentInside}}
+            {{/if}}
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </template>
