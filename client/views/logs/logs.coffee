@@ -36,6 +36,8 @@ Template.logViewer.helpers
 
     SpaceLock.cols.Logs.find query, sort: createdAt: -1
 
+Template.logsTable.helpers
+
   profileImage: ->
     SpaceLock.cols.Users.findOne(@data.user._id)?.profile.image
 
@@ -58,7 +60,7 @@ Template.logViewer.helpers
 
   rowColor: ->
     if @direction is 'exit'
-      'lime lighten-5'
+      'cyan lighten-5'
 
   directionIcon: ->
     if @direction is 'enter'
