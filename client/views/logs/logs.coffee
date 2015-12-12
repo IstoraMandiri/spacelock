@@ -41,32 +41,30 @@ Template.logViewer.helpers
 
   eventIcon: ->
     if @type is 'openDoor'
-      'unlock'
+      'action-lock-open'
     else if @type is 'invalidCard'
-      'times'
+      'content-clear'
     else if @type is 'noAppPermission' \
     or @type is 'noCardPermission'
-      'user-times'
+      'content-block'
 
     # else if
 
   methodIcon: ->
     if @data.method is 'user'
-      'mobile'
+      'hardware-phone-android'
     else if @data.method is 'card'
-      'credit-card-alt'
+      'action-payment'
 
   rowColor: ->
     if @direction is 'exit'
       'lime lighten-5'
-    # else if @direction is 'exit'
-    #   'red lighten-5'
 
   directionIcon: ->
     if @direction is 'enter'
-      'arrow-left'
+      'communication-call-received'
     else if @direction is 'exit'
-      'arrow-right'
+      'communication-call-made'
 
 
 Template.logViewer.events

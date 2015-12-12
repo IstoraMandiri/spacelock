@@ -57,13 +57,14 @@
               </td>
             {{/if}}
             <td>
-              <i class="fa fa-fw fa-{{eventIcon}}"></i>
+              <i class="mdi-{{eventIcon}}"></i>
               {{#if data._cardId}}
                 {{data._cardId}}
               {{/if}}
-              <i class="fa fa-fw fa-{{methodIcon}}"></i>
+              <i class="mdi-{{methodIcon}}"></i>
               {{#if direction}}
-                <i class="fa fa-fw fa-{{directionIcon}}"></i>
+                <i class="mdi-{{directionIcon}}"></i>
+                {{direction}}
               {{/if}}
             </td>
             <td>
