@@ -49,6 +49,8 @@ Router.configure
       @redirect 'sign-in'
     else
       @render 'sign-in'
+  onAfterAction: ->
+    window.scrollTo(0,0)
 
 # build main menu routes
 for route in SpaceLock.routes.main
