@@ -59,3 +59,6 @@ Template.user.helpers
       obj.hasRole = Roles.userIsInRole userId, obj.role
       obj.userId = userId
       return obj
+
+  logs: ->
+    SpaceLock.cols.Logs.find {'data.user._id': @_id}, sort: createdAt: -1

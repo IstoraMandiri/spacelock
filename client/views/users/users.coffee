@@ -3,7 +3,7 @@ roleIcons =
   'cardEntry' : 'action-payment'
   'appEntry' : 'hardware-phone-android'
 
-Template.userViewer.rendered = ->
+Template.userViewer.onCreated ->
   Session.set 'userSearchFilter', false
 
 Template.userViewer.helpers
