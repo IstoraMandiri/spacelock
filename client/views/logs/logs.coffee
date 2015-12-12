@@ -1,6 +1,7 @@
 Template.logs.events
   'click .delete-all' : ->
-    Meteor.call 'clearLogs'
+    if confirm "Are you sure you wish to delete all logs?"
+      Meteor.call 'clearLogs'
 
 Template.logViewer.rendered = ->
   Session.set 'logSearchFilter', false
