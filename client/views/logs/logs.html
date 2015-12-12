@@ -37,25 +37,17 @@
 
   <div class="row">
     <table class='responsive-table bordered'>
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Event</th>
-          <th colspan="100">Data</th>
-        </tr>
-      </thead>
       <tbody>
         {{#each logs}}
-          <tr>
+          <tr class="{{rowColor}}">
             <td>{{formatDateTime createdAt}}</td>
-            <td>{{type}}</td>
-            {{#if data._cardId}}
-              <td>{{data._cardId}}</td>
-            {{/if}}
             {{#if data.user}}
-              <td>{{data.method}}</td>
               <td>
                 <a href="{{pathFor 'user' _userId=data.user._id}}">
+                  {{#if profileImage}}
+                    <img src="{{getFileUrl profileImage store='thumb'}}" alt="" class="circle responsive-img profile-img-thumb">
+                  {{/if}}
+
                   {{#if data.user.name}}
                     {{data.user.name}}
                   {{else}}
@@ -64,12 +56,21 @@
                 </a>
               </td>
             {{/if}}
-            {{#if direction}}
-              <td>{{direction}}</td>
-            {{/if}}
-            {{#if timeSpentInside}}
-              <td>{{formatDuration timeSpentInside}}</td>
-            {{/if}}
+            <td>
+              <i class="fa fa-fw fa-{{eventIcon}}"></i>
+              {{#if data._cardId}}
+                {{data._cardId}}
+              {{/if}}
+              <i class="fa fa-fw fa-{{methodIcon}}"></i>
+              {{#if direction}}
+                <i class="fa fa-fw fa-{{directionIcon}}"></i>
+              {{/if}}
+            </td>
+            <td>
+              {{#if timeSpentInside}}
+                {{formatDuration timeSpentInside}}
+              {{/if}}
+            </td>
           </tr>
         {{/each}}
       </tbody>

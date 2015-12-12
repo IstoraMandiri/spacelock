@@ -22,3 +22,4 @@ cfs:graphicsmagick
 meteorhacks:npm
 npm-container
 momentjs:moment
+fortawesome:fontawesome
