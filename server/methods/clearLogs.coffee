@@ -1,4 +1,7 @@
 Meteor.methods
   'clearLogs' : ->
-    console.log 'clearing all logs'
+
+    unless SpaceLock.adminAuth @userId
+      throw new Meteor.Error 'Unauthorized'
+
     SpaceLock.cols.Logs.remove({})

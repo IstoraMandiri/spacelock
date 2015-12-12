@@ -1,4 +1,8 @@
 Meteor.methods 'generateCard' : (userId) ->
+
+  unless SpaceLock.adminAuth @userId
+    throw new Meteor.Error 'Unauthorized'
+
   newCardId = Random.secret()
 
   SpaceLock.cols.Users.update userId,
@@ -11,6 +15,9 @@ Meteor.methods 'generateCard' : (userId) ->
 
 Meteor.methods 'destroyCard' : (userId) ->
 
+  unless SpaceLock.adminAuth @userId
+    throw new Meteor.Error 'Unauthorized'
+
   SpaceLock.cols.Users.update userId,
     $unset:
       hasCard: 1
@@ -19,6 +26,10 @@ Meteor.methods 'destroyCard' : (userId) ->
   Roles.removeUsersFromRoles userId, 'cardEntry'
 
 Meteor.methods 'setCardId' : (options) ->
+
+  unless SpaceLock.adminAuth @userId
+    throw new Meteor.Error 'Unauthorized'
+
   if options.userId and options._cardId
 
     SpaceLock.cols.Users.update options.userId,
