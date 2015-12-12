@@ -3,7 +3,7 @@ Template.logs.events
     if confirm "Are you sure you wish to delete all logs?"
       Meteor.call 'clearLogs'
 
-Template.logViewer.rendered = ->
+Template.logViewer.onCreated ->
   Session.set 'logSearchFilter', false
   Session.set 'logStartFilter', false
   Session.set 'logEndFilter', false
