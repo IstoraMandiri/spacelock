@@ -1,11 +1,17 @@
 # Priority
 
-- Secure the methods
+x Change 'user' to 'app' in logs
+x Confirmation on delete
+x Secure the methods
+x Last login
+x Roles in UI
+
+---
+
 - Add a 'manager' permissions
   - View logs only
-- Change 'user' to 'app' in logs
 - Paginated pub/sub of logs
-
+- Time limited entries
 
 - Lowpass/Hipass filter for door open event
 
