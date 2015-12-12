@@ -32,7 +32,7 @@
           <th>Created</th>
           <th>Name</th>
           <th>Doors Opened</th>
-          <th>Latest Login</th>
+          <th>Latest Unlock</th>
           <th>Roles</th>
         </tr>
       </thead>
@@ -43,7 +43,7 @@
             <td>
               <a href="{{pathFor 'user' _userId=_id}}">
                 {{#if profile.image}}
-                  <img src="{{getFileUrl profile.image store='thumb'}}" alt="" class="circle responsive-img profile-img-thumb"> <!-- notice the "circle" class -->
+                  <img src="{{getFileUrl profile.image store='thumb'}}" alt="" class="circle responsive-img profile-img-thumb">
                 {{/if}}
                 {{#if profile.name}}
                   {{profile.name}}
