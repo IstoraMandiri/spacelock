@@ -1,3 +1,7 @@
+roleIcons =
+  'admin' : 'action-verified-user'
+  'cardEntry' : 'action-payment'
+  'appEntry' : 'hardware-phone-android'
 
 Template.userViewer.rendered = ->
   Session.set 'userSearchFilter', false
@@ -24,7 +28,8 @@ Template.userViewer.helpers
 
   doorsOpened : -> SpaceLock.cols.Logs.find({ type: 'openDoor', 'data.user._id': @_id }).count()
   latestLogin : -> SpaceLock.cols.Logs.findOne({ type: 'openDoor', 'data.user._id': @_id }, { sort: { createdAt: -1 }})?.createdAt
-
+  roles: -> @roles.sort()
+  roleIcon: -> roleIcons[@.toString()]
 
 Template.userViewer.events
   'keyup #searchUsers' : (e) ->
